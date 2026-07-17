@@ -162,8 +162,3 @@ public class ModernIcon implements Icon {
         return height;
     }
 }
-
-
-
-
-
