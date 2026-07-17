@@ -1,4 +1,4 @@
-package com.faculty.view.dashboard;
+package view.dashboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 
-import com.faculty.model.User;
-import com.faculty.model.Course;
-import com.faculty.model.Student;
-import com.faculty.controller.CourseController;
+import model.User;
+import model.Course;
+import model.Student;
+import controller.CourseController;
 import model.dao.StudentDAO;
-import com.faculty.view.components.StyledTable;
-import com.faculty.view.components.RoundedButton;
-import com.faculty.view.components.RoundedComboBox;
+import view.components.StyledTable;
+import view.components.RoundedButton;
+import view.components.RoundedComboBox;
 
 public class StudentCoursesPanel extends JPanel {
     
@@ -22,7 +22,6 @@ public class StudentCoursesPanel extends JPanel {
     private CourseController controller;
     private User currentUser;
     private int studentId = -1;
-    private int studentDegreeId = 0;
     private RoundedComboBox<String> cmbYear;
     private RoundedComboBox<String> cmbSem;
 
@@ -34,7 +33,6 @@ public class StudentCoursesPanel extends JPanel {
         Student student = sdao.getStudentByUserId(currentUser.getId());
         if (student != null) {
             this.studentId = student.getId();
-            this.studentDegreeId = student.getDegreeId();
         }
 
         setLayout(new BorderLayout(20, 20));
@@ -42,7 +40,7 @@ public class StudentCoursesPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
 
         // Top Banner
-        com.faculty.view.components.GradientPanel banner = new com.faculty.view.components.GradientPanel(new Color(20, 61, 89), new Color(20, 61, 89), false, 20);
+        view.components.GradientPanel banner = new view.components.GradientPanel(new Color(20, 61, 89), new Color(20, 61, 89), false, 20);
         banner.setLayout(new BorderLayout());
         banner.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         
@@ -100,7 +98,7 @@ public class StudentCoursesPanel extends JPanel {
         scrollPane.getViewport().setBackground(Color.WHITE);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         
-        com.faculty.view.components.CardPanel tableContainer = new com.faculty.view.components.CardPanel(20, Color.WHITE);
+        view.components.CardPanel tableContainer = new view.components.CardPanel(20, Color.WHITE);
         tableContainer.setLayout(new BorderLayout());
         tableContainer.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         tableContainer.add(scrollPane, BorderLayout.CENTER);
@@ -149,12 +147,7 @@ public class StudentCoursesPanel extends JPanel {
     }
 
     private void showRegistrationDialog(int year, int sem) {
-        List<Course> available;
-        if (studentDegreeId > 0) {
-            available = controller.getCoursesByDegreeYearAndSemester(studentDegreeId, year, sem);
-        } else {
-            available = controller.getCoursesByYearAndSemester(year, sem);
-        }
+        List<Course> available = controller.getCoursesByYearAndSemester(year, sem);
         List<Course> enrolled = controller.getCoursesByStudentUserId(currentUser.getId());
         List<String> enrolledCodes = enrolled.stream().map(Course::getCourseCode).collect(Collectors.toList());
 
@@ -177,7 +170,7 @@ public class StudentCoursesPanel extends JPanel {
         JComponent[] fields = {cmbAvailable};
         String[] labels = {"Select Course:"};
 
-        com.faculty.view.components.ModernDialog dialog = new com.faculty.view.components.ModernDialog(
+        view.components.ModernDialog dialog = new view.components.ModernDialog(
             SwingUtilities.getWindowAncestor(this), 
             "Register for Course", 
             labels, fields
@@ -198,8 +191,3 @@ public class StudentCoursesPanel extends JPanel {
         }
     }
 }
-
-
-
-
-
