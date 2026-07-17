@@ -17,8 +17,3 @@ public class DegreeController {
         for (Degree d : deletedList) degreeDAO.deleteDegree(d.getId());
     }
 }
-
-
-
-
-
