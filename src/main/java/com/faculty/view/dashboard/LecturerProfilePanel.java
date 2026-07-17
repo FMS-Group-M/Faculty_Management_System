@@ -205,8 +205,3 @@ public class LecturerProfilePanel extends JPanel {
         return cmb;
     }
 }
-
-
-
-
-
