@@ -1,17 +1,17 @@
-package com.faculty.view.dashboard;
+package view.dashboard;
 
 import javax.swing.*;
 import java.awt.*;
-import com.faculty.controller.StudentController;
-import com.faculty.model.Student;
-import com.faculty.model.User;
-import com.faculty.view.components.RoundedButton;
-import com.faculty.view.components.RoundedTextField;
+import controller.StudentController;
+import model.Student;
+import model.User;
+import view.components.RoundedButton;
+import view.components.RoundedTextField;
 
 public class StudentProfilePanel extends JPanel {
     private RoundedTextField txtFullName;
     private RoundedTextField txtStudentId;
-    private com.faculty.view.components.RoundedComboBox<String> cmbDegree;
+    private view.components.RoundedComboBox<String> cmbDegree;
     private RoundedTextField txtEmail;
     private RoundedTextField txtMobile;
     private Student currentStudent;
@@ -26,7 +26,7 @@ public class StudentProfilePanel extends JPanel {
         currentStudent = controller.getStudentByUserId(currentUser.getId());
 
         // Top Banner
-        com.faculty.view.components.GradientPanel banner = new com.faculty.view.components.GradientPanel(new Color(20, 61, 89), new Color(20, 61, 89), false, 20);
+        view.components.GradientPanel banner = new view.components.GradientPanel(new Color(20, 61, 89), new Color(20, 61, 89), false, 20);
         banner.setLayout(new BorderLayout());
         banner.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         
@@ -55,7 +55,7 @@ public class StudentProfilePanel extends JPanel {
         add(bannerWrapper, BorderLayout.NORTH);
 
         // Form panel inside a card
-        com.faculty.view.components.CardPanel formContainer = new com.faculty.view.components.CardPanel(20, Color.WHITE);
+        view.components.CardPanel formContainer = new view.components.CardPanel(20, Color.WHITE);
         formContainer.setLayout(new BorderLayout());
         formContainer.setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
         
@@ -90,12 +90,12 @@ public class StudentProfilePanel extends JPanel {
         bottomPanel.setOpaque(false);
         
         RoundedButton btnEdit = new RoundedButton("Edit", 20, new Color(230, 240, 250), new Color(0, 100, 200));
-        btnEdit.setIcon(new com.faculty.view.components.ModernIcon(com.faculty.view.components.ModernIcon.IconType.EDIT, 16, new Color(0, 100, 200)));
+        btnEdit.setIcon(new view.components.ModernIcon(view.components.ModernIcon.IconType.EDIT, 16, new Color(0, 100, 200)));
         btnEdit.setIconTextGap(10);
         btnEdit.setPreferredSize(new Dimension(120, 45));
 
         RoundedButton btnSave = new RoundedButton("Save changes", 20, new Color(20, 61, 89), Color.WHITE);
-        btnSave.setIcon(new com.faculty.view.components.ModernIcon(com.faculty.view.components.ModernIcon.IconType.SAVE, 18, Color.WHITE));
+        btnSave.setIcon(new view.components.ModernIcon(view.components.ModernIcon.IconType.SAVE, 18, Color.WHITE));
         btnSave.setIconTextGap(10);
         btnSave.setPreferredSize(new Dimension(200, 45));
         
@@ -120,8 +120,8 @@ public class StudentProfilePanel extends JPanel {
                 
                 int degreeId = 0;
                 if (degreeInput != null && !degreeInput.isEmpty()) {
-                    com.faculty.controller.DegreeController dc = new com.faculty.controller.DegreeController();
-                    for (com.faculty.model.Degree d : dc.getAllDegrees()) {
+                    controller.DegreeController dc = new controller.DegreeController();
+                    for (model.Degree d : dc.getAllDegrees()) {
                         if (d.getName().equalsIgnoreCase(degreeInput)) {
                             degreeId = d.getId();
                             break;
@@ -202,16 +202,16 @@ public class StudentProfilePanel extends JPanel {
         }
     }
 
-    private com.faculty.view.components.RoundedComboBox<String> addComboBoxField(JPanel formPanel, GridBagConstraints gbc, String label, int row, String selectedItem) {
+    private view.components.RoundedComboBox<String> addComboBoxField(JPanel formPanel, GridBagConstraints gbc, String label, int row, String selectedItem) {
         JLabel lbl = new JLabel(label);
         lbl.setFont(new Font("Montserrat", Font.BOLD, 15));
         lbl.setForeground(new Color(80, 80, 80));
         
-        com.faculty.view.components.RoundedComboBox<String> cmb = new com.faculty.view.components.RoundedComboBox<>(20);
+        view.components.RoundedComboBox<String> cmb = new view.components.RoundedComboBox<>(20);
         cmb.setPreferredSize(new Dimension(300, 40));
         
-        com.faculty.controller.DegreeController dc = new com.faculty.controller.DegreeController();
-        for (com.faculty.model.Degree d : dc.getAllDegrees()) {
+        controller.DegreeController dc = new controller.DegreeController();
+        for (model.Degree d : dc.getAllDegrees()) {
             cmb.addItem(d.getName());
         }
         if (selectedItem != null && !selectedItem.isEmpty()) {
@@ -230,8 +230,3 @@ public class StudentProfilePanel extends JPanel {
         return cmb;
     }
 }
-
-
-
-
-

@@ -1,9 +1,4 @@
-package com.faculty.view;
+package view;
 
 public class StudentDashboard {
 }
-
-
-
-
-
