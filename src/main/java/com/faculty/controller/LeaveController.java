@@ -21,8 +21,3 @@ public class LeaveController {
         for (Leave l : deletedList) leaveDAO.deleteLeave(l.getId());
     }
 }
-
-
-
-
-
