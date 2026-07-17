@@ -137,8 +137,3 @@ public class LecturerCoursesPanel extends JPanel {
         add(mainContent, BorderLayout.CENTER);
     }
 }
-
-
-
-
-
