@@ -180,7 +180,3 @@ public class StudentTimetablePanel extends JPanel {
     }
 }
 
-
-
-
-

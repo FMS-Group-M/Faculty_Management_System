@@ -66,8 +66,3 @@ public class GradientPanel extends JPanel {
         g2.dispose();
     }
 }
-
-
-
-
-
