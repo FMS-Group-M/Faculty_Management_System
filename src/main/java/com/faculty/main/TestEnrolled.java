@@ -8,8 +8,7 @@ import model.dao.StudentDAO;
 public class TestEnrolled {
     public static void main(String[] args) {
         CourseDAO dao = new CourseDAO();
-        // Lakindu's user_id is 14 (or whatever it is).
-        // Let's get his user ID first
+
         int userId = -1;
         try (java.sql.Connection conn = com.faculty.model.DatabaseConnection.getConnection();
              java.sql.PreparedStatement pstmt = conn.prepareStatement("SELECT id FROM users WHERE username = 'Lakindu'")) {
