@@ -292,8 +292,3 @@ public class LecturerLeavePanel extends JPanel {
         }
     }
 }
-
-
-
-
-
